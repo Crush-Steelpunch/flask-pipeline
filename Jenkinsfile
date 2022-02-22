@@ -8,10 +8,10 @@ pipeline {
         }
         stage('environment and deps and init database') {
             steps {
-                sh "python3 -m venv venv; \
-		source venv/bin/activate; \ 
-		python3 -m pip install -r requirements.txt; \
-		python3 create.py"
+		withPythonEnv ('python3.8.6'){
+			sh "python3 -m pip install -r requirements.txt"
+			sh "python3 create.py"
+		}
             }
         }
         stage('testing') {
