@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	environment {
+	DATABASE_URI="sqlite:///lr.db"
+	SECRET_KEY="password123"
+	}
     stages {
         stage('checkout') {
             steps {
