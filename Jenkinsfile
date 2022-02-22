@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-		checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Crush-Steelpunch/to-do-example.git']]])
+		checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Crush-Steelpunch/todo-app-v4.git']]])
             }
         }
         stage('environment and deps and init database') {
