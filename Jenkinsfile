@@ -8,7 +8,7 @@ pipeline {
         }
         stage('environment and deps and init database') {
 		steps{
-			withPythonEnv ('python3.8.6'){
+			withPythonEnv ('python3.6.8'){
 				sh "python3 -m pip install -r requirements.txt"
 				sh "python3 create.py"
 			}
@@ -16,14 +16,16 @@ pipeline {
         }
         stage('testing') {
             steps {
-                sh "source venv/bin/activate; \
-		python3 -m pytest"
+			withPythonEnv ('python3.6.8'){
+				sh "python3 -m pytest"
+			}
             }
         }
         stage('run app') {
             steps {
-                sh "source venv/bin/activate; \
-		python3 app.py"
+			withPythonEnv ('python3.6.8'){
+				sh "python3 app.py"
+			}
             }
         }
     }
