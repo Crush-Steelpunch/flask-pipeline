@@ -1,8 +1,10 @@
+// jenkins needs S
+
 pipeline {
     agent any
 	environment {
-	DATABASE_URI=sqlite:///lr.db
-	SECRET_KEY=password123
+	DATABASE_URI = 'sqlite:///lr.db'
+	SECRET_KEY = 'password123'
 	}
     stages {
         stage('checkout') {
