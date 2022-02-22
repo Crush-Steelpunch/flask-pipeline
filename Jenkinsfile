@@ -1,8 +1,8 @@
 pipeline {
     agent any
 	environment {
-	DATABASE_URI="sqlite:///lr.db"
-	SECRET_KEY="password123"
+	DATABASE_URI=sqlite:///lr.db
+	SECRET_KEY=password123
 	}
     stages {
         stage('checkout') {
@@ -21,7 +21,7 @@ pipeline {
         stage('testing') {
             steps {
 			withPythonEnv ('python3.6.8'){
-				sh "python3 -m pytest ."
+				sh "python3 -m pytest"
 			}
             }
         }
