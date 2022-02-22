@@ -6,24 +6,20 @@ pipeline {
 		checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Crush-Steelpunch/to-do-example.git']]])
             }
         }
-        stage('environment and deps and init database') {
+        withPythonEnv('python3.8.6') {
             steps {
-                sh "python3 -m venv venv; \
-		source venv/bin/activate; \ 
-		python3 -m pip install -r requirements.txt; \
-		python3 create.py"
+		sh "python3 -m pip install -r requirements.txt"
+		sh "python3 create.py"
             }
         }
-        stage('testing') {
+        withPythonEnv('python3.8.6') {
             steps {
-                sh "source venv/bin/activate; \
-		python3 -m pytest"
+		sh "python3 -m pytest"
             }
         }
-        stage('run app') {
+        withPythonEnv('python3.8.6') {
             steps {
-                sh "source venv/bin/activate; \
-		python3 app.py"
+		sh "python3 app.py"
             }
         }
     }
