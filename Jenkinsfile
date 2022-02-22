@@ -12,7 +12,6 @@ pipeline {
 			sh "python3 -m pip install -r requirements.txt"
 			sh "python3 create.py"
 		}
->>>>>>> pyenv
             }
         }
         withPythonEnv('python3.8.6') {
