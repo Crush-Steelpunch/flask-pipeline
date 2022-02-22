@@ -7,9 +7,11 @@ pipeline {
             }
         }
         stage('environment and deps and init database') {
-		withPythonEnv ('python3.8.6'){
-			sh "python3 -m pip install -r requirements.txt"
-			sh "python3 create.py"
+		steps{
+			withPythonEnv ('python3.8.6'){
+				sh "python3 -m pip install -r requirements.txt"
+				sh "python3 create.py"
+			}
 		}
         }
         stage('testing') {
